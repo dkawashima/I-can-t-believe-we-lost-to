@@ -10,9 +10,12 @@ Player::Player(Side side) {
     testingMinimax = false;
     gameBoard = new Board();
     playerSide = side;
+	 
     if (side == BLACK){
+		cerr << "our player is black" << endl;;
         oppSide = WHITE;
     } else {
+		cerr << "our player is white" << endl;;
         oppSide = BLACK;
     }
     /* 
