@@ -33,7 +33,9 @@ Player::~Player() {
     delete gameBoard;
 }
 
-
+/*
+* Sets current Board to input board.
+*/
 void Player::setBoard(Board* board){
     gameBoard = board;
 }
@@ -67,23 +69,23 @@ Move *Player::doMove(Move *opponentsMove, int msLeft) {
 
     if (gameBoard->hasMoves(playerSide) == true){
 		vector<Move *> availableMoves = gameBoard->getLegalMoves(playerSide);
-		cerr << "Size: " << availableMoves.size() << endl;
+		//cerr << "Size: " << availableMoves.size() << endl;
         for (unsigned int i = 0; i < availableMoves.size(); i++) {
-            cerr << "Move " << i <<  ": " << availableMoves[i]->getX() << ", " << availableMoves[i]->getY() << endl;
-            cerr << "i: " << i << endl;
+            //cerr << "Move " << i <<  ": " << availableMoves[i]->getX() << ", " << availableMoves[i]->getY() << endl;
+            //cerr << "i: " << i << endl;
             copyBoard = gameBoard->copy();
 			copyBoard->doMove(availableMoves[i], playerSide);
             if (copyBoard->hasMoves(oppSide) == true){
                 availableOppMoves = copyBoard->getLegalMoves(oppSide);
             
                 for (unsigned int j = 0; j < availableOppMoves.size(); j++){
-                    cerr << "j: " << j << endl;
+                    //cerr << "j: " << j << endl;
                     copyBoard2 = copyBoard->copy();
                     copyBoard2->doMove(availableOppMoves[j], oppSide);
                     tempScore = copyBoard2->getScore(playerSide, oppSide);
                     if (tempScore < currScoreIn){
                         currScoreIn = tempScore;
-                        cerr << "New mini: " << currScoreIn << endl;
+                        //cerr << "New mini: " << currScoreIn << endl;
                     }
                 }
 

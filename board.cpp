@@ -179,6 +179,9 @@ void Board::setBoard(char data[]) {
     }
 }
 
+/*
+* Returns score of Board, interms of points for one side.
+*/ 
 int Board::getScore(Side side, Side oppSide){
     /*for (int i = 0; i < 8; i++){
         for (int j = 0; j < 8; j++){
@@ -192,7 +195,9 @@ int Board::getScore(Side side, Side oppSide){
     return count(side) - count(oppSide);
 }
 
-
+/* 
+* Returns vector of all legal moves for a given side
+*/
 vector<Move *> Board::getLegalMoves(Side side){
     vector<Move *> possibleMoves;
     Move* m = new Move(0, 0);
@@ -201,12 +206,11 @@ vector<Move *> Board::getLegalMoves(Side side){
         for (int j = 0; j < 8; j++){
             m->setY(j);
             if (checkMove(m, side) == true){
-                
+
                 Move* good = new Move(i, j);
                 possibleMoves.push_back(good);
             }
         }   
     }
-    //delete m;
     return possibleMoves;
 }
