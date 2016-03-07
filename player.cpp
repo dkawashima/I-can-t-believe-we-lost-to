@@ -8,7 +8,7 @@
 Player::Player(Side side) {
     // Will be set to true in test_minimax.cpp.
     testingMinimax = false;
-    gameBoard = Board();
+    gameBoard = new Board();
     playerSide = side;
     if (side == BLACK){
         oppSide = WHITE;
@@ -27,6 +27,7 @@ Player::Player(Side side) {
  * Destructor for the player.
  */
 Player::~Player() {
+    delete gameBoard;
 }
 
 /*
@@ -52,4 +53,10 @@ Move *Player::doMove(Move *opponentsMove, int msLeft) {
         
     }
     return NULL;
+}
+
+Move *Player::doRandomMove(){
+    if (gameBoard.hasMoves() == true){
+        
+    }
 }

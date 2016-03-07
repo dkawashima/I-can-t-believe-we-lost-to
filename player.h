@@ -18,7 +18,7 @@ public:
     bool testingMinimax;
 
 private:
-	Board gameBoard; 
+	Board* gameBoard; 
 	Side playerSide;
 	Side oppSide;
 };
