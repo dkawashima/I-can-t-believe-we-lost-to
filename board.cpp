@@ -179,30 +179,34 @@ void Board::setBoard(char data[]) {
     }
 }
 
-/*int Board::getScore(Side side, Side oppSide){
-    for (int i = 0; i < 8; i++){
+int Board::getScore(Side side, Side oppSide){
+    /*for (int i = 0; i < 8; i++){
         for (int j = 0; j < 8; j++){
             if (occupied(i, j) == true){
 
             }
         }
     }
+    */
 
     return count(side) - count(oppSide);
 }
-*/
+
 
 vector<Move *> Board::getLegalMoves(Side side){
     vector<Move *> possibleMoves;
-    Move* m;
+    Move* m = new Move(0, 0);
     for (int i = 0; i < 8; i++){
+        m->setX(i);
         for (int j = 0; j < 8; j++){
-            m =  new Move(i, j);
+            m->setY(j);
             if (checkMove(m, side) == true){
-                possibleMoves.push_back(m);
+                
+                Move* good = new Move(i, j);
+                possibleMoves.push_back(good);
             }
-            //delete m;
         }   
     }
+    //delete m;
     return possibleMoves;
 }

@@ -31,7 +31,7 @@ public:
     int countWhite();
 
     void setBoard(char data[]);
-    int getScore();
+    int getScore(Side ourSide, Side oppSide);
     vector<Move *> getLegalMoves(Side side);
 };
 

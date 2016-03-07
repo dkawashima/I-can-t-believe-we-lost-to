@@ -30,6 +30,11 @@ Player::~Player() {
     delete gameBoard;
 }
 
+
+void Player::setBoard(Board* board){
+    gameBoard = board;
+}
+
 /*
  * Compute the next move given the opponent's last move. Your AI is
  * expected to keep track of the board on its own. If this is the first move,
@@ -48,14 +53,52 @@ Move *Player::doMove(Move *opponentsMove, int msLeft) {
      * process the opponent's opponents move before calculating your own move
      */ 
     gameBoard->doMove(opponentsMove, oppSide);
-    
-    //getBoardScore()
+    Board * copyBoard;
+    Board * copyBoard2;
+    vector<Move *> availableOppMoves;
+    //int score = gameBoard->getScore(playerSide, oppSide);
+    int currScoreIn = 9999;
+    int currScoreOut = -9999;
+    int tempScore;
+    unsigned int moveIndex = 0;
+
     if (gameBoard->hasMoves(playerSide) == true){
 		vector<Move *> availableMoves = gameBoard->getLegalMoves(playerSide);
-		for (unsigned int i = 0; i < availableMoves.size(); i++) {
-			gameBoard->doMove(availableMoves[0], playerSide);
-			return availableMoves[0];
+		cerr << "Size: " << availableMoves.size() << endl;
+        for (unsigned int i = 0; i < availableMoves.size(); i++) {
+            cerr << "Move " << i <<  ": " << availableMoves[i]->getX() << ", " << availableMoves[i]->getY() << endl;
+            cerr << "i: " << i << endl;
+            copyBoard = gameBoard->copy();
+			copyBoard->doMove(availableMoves[i], playerSide);
+            if (copyBoard->hasMoves(oppSide) == true){
+                availableOppMoves = copyBoard->getLegalMoves(oppSide);
+            
+                for (unsigned int j = 0; j < availableOppMoves.size(); j++){
+                    cerr << "j: " << j << endl;
+                    copyBoard2 = copyBoard->copy();
+                    copyBoard2->doMove(availableOppMoves[j], oppSide);
+                    tempScore = copyBoard2->getScore(playerSide, oppSide);
+                    if (tempScore < currScoreIn){
+                        currScoreIn = tempScore;
+                        cerr << "New mini: " << currScoreIn << endl;
+                    }
+                }
+
+                if (currScoreIn > currScoreOut){
+                    currScoreOut = currScoreIn;
+                    moveIndex = i;
+                }
+                currScoreIn = 9999;
+            } else {
+                tempScore = copyBoard->getScore(playerSide, oppSide);
+                if (tempScore > 0){
+                    gameBoard->doMove(availableMoves[i], playerSide);
+                    return availableMoves[i];
+                }
+            }
 		}
+            gameBoard->doMove(availableMoves[moveIndex], playerSide);
+            return availableMoves[moveIndex];
     }
     return NULL;
 }
