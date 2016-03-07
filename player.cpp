@@ -12,10 +12,10 @@ Player::Player(Side side) {
     playerSide = side;
 	 
     if (side == BLACK){
-		cerr << "our player is black" << endl;;
+		//cerr << "our player is black" << endl;;
         oppSide = WHITE;
     } else {
-		cerr << "our player is white" << endl;;
+		//cerr << "our player is white" << endl;;
         oppSide = BLACK;
     }
     /* 

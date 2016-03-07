@@ -191,8 +191,31 @@ int Board::getScore(Side side, Side oppSide){
         }
     }
     */
+    int score = count(side) - count(oppSide);
+    if (get(side, 0, 0)){
+        score += 5;
+    } else if (get(oppSide, 0, 0)) {
+        score -= 5;
+    }
+    if (get(side, 7, 0)){
+        score += 5;
+    } else if (get(oppSide, 7, 0)) {
+        score -= 5;
+    }
+    if (get(side, 0, 7)){
+        score += 5;
+    } else if (get(oppSide, 0, 7)) {
+        score -= 5;
+    }
+    if (get(side, 7, 7)){
+        score += 5;
+    } else if (get(oppSide, 7, 7)) {
+        score -= 5;
+    }
+    
+    //for (int i = 2; )
 
-    return count(side) - count(oppSide);
+    return score;
 }
 
 /* 
