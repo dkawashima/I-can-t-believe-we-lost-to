@@ -47,9 +47,13 @@ Move *Player::doMove(Move *opponentsMove, int msLeft) {
      * process the opponent's opponents move before calculating your own move
      */ 
     gameBoard.doMove(opponentsMove, oppSide);
+    
     //getBoardScore()
     if (gameBoard.hasMoves() == true){
-        
+		std::vector<Move *> availableMoves = gameBoard.getLegalMoves();
+		for (i=0; i < availableMoves.size(); i++) {
+			gameBoard.doMove(availableMoves[0]);
+		}
     }
     return NULL;
 }
