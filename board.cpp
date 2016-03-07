@@ -179,12 +179,28 @@ void Board::setBoard(char data[]) {
     }
 }
 
-int Board::getScore(){
+int Board::getScore(Side side, Side oppSide){
     for (int i = 0; i < 8; i++){
         for (int j = 0; j < 8; j++){
             if (occupied(i, j) == true){
-                
+
             }
         }
     }
+
+    return count(side) - count(oppSide);
+}
+
+std::vector<Move *> Board::getLegalMoves(Side side){
+    std::vector<Move *> possibleMoves;
+    Move m;
+    for (int i = 0; i < 8; i++){
+        for (int j = 0; j < 8; j++){
+            m = Move(i, j);
+            if (checkMove(m, side) == true){
+                possibleMoves.push_back(m);
+            }
+        }   
+    }
+    return possibleMoves;
 }

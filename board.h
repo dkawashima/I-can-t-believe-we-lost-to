@@ -31,6 +31,7 @@ public:
 
     void setBoard(char data[]);
     int getScore();
+    std::vector<Move *> Board::getLegalMoves(Side side);
 };
 
 #endif
