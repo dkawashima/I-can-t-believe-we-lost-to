@@ -47,21 +47,16 @@ Move *Player::doMove(Move *opponentsMove, int msLeft) {
      * TODO: Implement how moves your AI should play here. You should first
      * process the opponent's opponents move before calculating your own move
      */ 
-    gameBoard.doMove(opponentsMove, oppSide);
+    gameBoard->doMove(opponentsMove, oppSide);
     
     //getBoardScore()
-    if (gameBoard.hasMoves() == true){
-		std::vector<Move *> availableMoves = gameBoard.getLegalMoves();
-		for (i=0; i < availableMoves.size(); i++) {
-			gameBoard.doMove(availableMoves[0]);
+    if (gameBoard->hasMoves(playerSide) == true){
+		vector<Move *> availableMoves = gameBoard->getLegalMoves(playerSide);
+		for (unsigned int i = 0; i < availableMoves.size(); i++) {
+			gameBoard->doMove(availableMoves[0], playerSide);
 			return availableMoves[0];
 		}
     }
     return NULL;
 }
 
-Move *Player::doRandomMove(){
-    if (gameBoard.hasMoves() == true){
-        
-    }
-}

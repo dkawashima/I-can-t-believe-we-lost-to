@@ -3,6 +3,7 @@
 
 #include <bitset>
 #include "common.h"
+#include <vector>
 using namespace std;
 
 class Board {
@@ -31,7 +32,7 @@ public:
 
     void setBoard(char data[]);
     int getScore();
-    std::vector<Move *> Board::getLegalMoves(Side side);
+    vector<Move *> getLegalMoves(Side side);
 };
 
 #endif
