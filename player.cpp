@@ -10,10 +10,10 @@ Player::Player(Side side) {
     testingMinimax = false;
     gameBoard = Board();
     playerSide = side;
-    if (side == "BLACK"){
-        oppSide = "WHITE";
+    if (side == BLACK){
+        oppSide = WHITE;
     } else {
-        oppSide = "BLACK";
+        oppSide = BLACK;
     }
     /* 
      * TODO: Do any initialization you need to do here (setting up the board,
@@ -48,5 +48,8 @@ Move *Player::doMove(Move *opponentsMove, int msLeft) {
      */ 
     gameBoard.doMove(opponentsMove, oppSide);
     //getBoardScore()
+    if (gameBoard.hasMoves() == true){
+        
+    }
     return NULL;
 }
