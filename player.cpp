@@ -54,6 +54,7 @@ Move *Player::doMove(Move *opponentsMove, int msLeft) {
 		std::vector<Move *> availableMoves = gameBoard.getLegalMoves();
 		for (i=0; i < availableMoves.size(); i++) {
 			gameBoard.doMove(availableMoves[0]);
+			return availableMoses[0];
 		}
     }
     return NULL;
