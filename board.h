@@ -29,7 +29,7 @@ public:
     int count(Side side);
     int countBlack();
     int countWhite();
-
+	int simpleScore(Side ourSide, Side oppSide);
     void setBoard(char data[]);
     int getScore(Side ourSide, Side oppSide);
     vector<Move *> getLegalMoves(Side side);

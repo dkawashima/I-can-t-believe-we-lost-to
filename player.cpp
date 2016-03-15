@@ -96,7 +96,7 @@ Move *Player::doMove(Move *opponentsMove, int msLeft) {
                 currScoreIn = 9999;
             } else {
                 tempScore = copyBoard->getScore(playerSide, oppSide);
-                if (tempScore > 0){
+                if (copyBoard->simpleScore(playerSide, oppSide) > 0){
                     gameBoard->doMove(availableMoves[i], playerSide);
                     return availableMoves[i];
                 }

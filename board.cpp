@@ -183,39 +183,136 @@ void Board::setBoard(char data[]) {
 * Returns score of Board, interms of points for one side.
 */ 
 int Board::getScore(Side side, Side oppSide){
-    /*for (int i = 0; i < 8; i++){
-        for (int j = 0; j < 8; j++){
-            if (occupied(i, j) == true){
-
-            }
-        }
+     int score = count(side) - count(oppSide);
+    for (int i = 2; i < 6; i++){
+        if (get(side, i, 0)){
+        score += 2;
+    } else if (get(oppSide, i, 0)) {
+        score -= 2;
     }
-    */
-    int score = count(side) - count(oppSide);
+     if (get(side, i, 1)){
+        score -= 1;
+    } else if (get(oppSide, i, 1)) {
+        score += 1;
+    }
+     if (get(side, i, 7)){
+        score += 2;
+    } else if (get(oppSide, i, 7)) {
+        score -= 2;
+    }
+    if (get(side, i, 6)){
+        score -= 1;
+    } else if (get(oppSide, i, 6)) {
+        score += 1;
+    }
+     if (get(side, 0, i)){
+        score += 2;
+    } else if (get(oppSide, 0, i)) {
+        score -= 2;
+    }
+    if (get(side, 1, i)){
+        score -= 1;
+    } else if (get(oppSide, 1, i)) {
+        score += 1;
+    }
+     if (get(side, 7, i)){
+        score += 2;
+    } else if (get(oppSide, 7, i)) {
+        score -= 2;
+    }
+    if (get(side, 6, i)){
+        score -= 1;
+    } else if (get(oppSide, 6, i)) {
+        score += 1;
+    }
+}
+
+        if (get(side, 1, 1)){
+        score -= 4;
+    } else if (get(oppSide, 1, 1)) {
+        score += 4;
+    }
+      if (get(side, 1, 6)){
+        score -= 4;
+    } else if (get(oppSide, 1, 6)) {
+        score += 4;
+    }
+      if (get(side, 6, 1)){
+        score -= 4;
+    } else if (get(oppSide, 6, 1)) {
+        score += 4;
+    }
+      if (get(side, 6, 6)){
+        score -= 4;
+    } else if (get(oppSide, 6, 6)) {
+        score += 4;
+    }
+     if (get(side, 0, 1)){
+        score -= 1;
+    } else if (get(oppSide, 0, 1)) {
+        score += 1;
+    }
+      if (get(side, 1, 0)){
+        score -= 1;
+    } else if (get(oppSide, 1, 0)) {
+        score += 1;
+    }
+      if (get(side, 6, 0)){
+        score -= 1;
+    } else if (get(oppSide, 6, 0)) {
+        score += 1;
+    }
+      if (get(side, 7, 6)){
+        score -= 1;
+    } else if (get(oppSide, 7, 6)) {
+        score += 1;
+    }
+     if (get(side, 6, 7)){
+        score -= 1;
+    } else if (get(oppSide, 6, 7)) {
+        score += 1;
+    }
+      if (get(side, 1, 7)){
+        score -= 1;
+    } else if (get(oppSide, 1, 7)) {
+        score += 1;
+    }
+      if (get(side, 0, 6)){
+        score -= 1;
+    } else if (get(oppSide, 0, 6)) {
+        score += 1;
+    }
+      if (get(side, 7, 1)){
+        score -= 1;
+    } else if (get(oppSide, 7, 1)) {
+        score += 1;
+    }
     if (get(side, 0, 0)){
-        score += 5;
+        score += 7;
     } else if (get(oppSide, 0, 0)) {
-        score -= 5;
+        score -= 7;
     }
     if (get(side, 7, 0)){
-        score += 5;
+        score += 7;
     } else if (get(oppSide, 7, 0)) {
-        score -= 5;
+        score -= 7;
     }
     if (get(side, 0, 7)){
-        score += 5;
+        score += 7;
     } else if (get(oppSide, 0, 7)) {
-        score -= 5;
+        score -= 7;
     }
     if (get(side, 7, 7)){
-        score += 5;
+        score += 7;
     } else if (get(oppSide, 7, 7)) {
-        score -= 5;
+        score -= 7;
     }
-    
-    //for (int i = 2; )
 
     return score;
+}
+
+int Board::simpleScore(Side side, Side oppSide){
+	return (count(side) - count(oppSide));
 }
 
 /* 
